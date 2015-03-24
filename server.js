@@ -1,8 +1,7 @@
 var restify = require('restify');
-var getNamedLevelsClass = require('./named-levels-class');
+var getNamedLevelsClass = require('./cached-named-levels-class');
 
 function respond(req, res, next) {
-  debugger;
   if (!req.params.name) {
     next(new restify.BadRequestError('Missing name parameter.'));
     return;

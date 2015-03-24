@@ -5,8 +5,6 @@ var config = require('./config');
 var changeCase = require('change-case');
 
 function getNamedLevelsClass(opts, done) {
-  console.log('Called getNamedLevelsClass!');
-  
   var base;
 
   if (opts) {
