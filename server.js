@@ -36,6 +36,8 @@ function respondHead(req, res, next) {
 }
 
 var server = restify.createServer();
+server.use(restify.CORS());
+
 server.get('/class/:name', respond);
 server.head('/class/:name', respondHead);
 
