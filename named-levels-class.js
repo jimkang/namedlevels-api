@@ -16,6 +16,17 @@ var hdTypeChances = {
   20: 1
 };
 
+var bonusStartingHDRollsForHdTypes = {
+  2: 9,
+  3: 9,
+  4: 6,
+  6: 8,
+  8: 7,
+  10: 12,
+  12: 20,
+  20: 30
+};
+
 function getNamedLevelsClass(opts, done) {
   var base;
 
@@ -50,13 +61,19 @@ function getNamedLevelsClass(opts, done) {
     }
     else {
       var pluralForm = canonicalizer.getSingularAndPluralForms(base)[1];
+      var hitDie = parseInt(hdTypeTable.roll(), 10);
+      var startingHD = 1;
+      var dieForBonusStartingHD = bonusStartingHDRollsForHdTypes[hitDie];
+      if (probable.roll(dieForBonusStartingHD) === 0) {
+        startingHD = probable.roll(4) === 0 ? 3 : 2;
+      }
 
       var profile = {
         className: changeCase.titleCase(base),
         pluralOfName: changeCase.titleCase(pluralForm),
         levelNames: levelNames,
-        hitDie: parseInt(hdTypeTable.roll(), 10),
-        startingHD: probable.roll(7) === 0 ? 2 : 1,
+        hitDie: hitDie,
+        startingHD: startingHD,
         gainsHDForever: probable.roll(5) === 0
       };
       done(error, profile);
