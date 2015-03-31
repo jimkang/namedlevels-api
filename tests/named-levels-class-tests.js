@@ -2,7 +2,7 @@ var test = require('tape');
 var getNamedLevelsClass = require('../named-levels-class');
 
 test('getNamedLevelsClass test', function basicTest(t) {
-  t.plan(6);
+  t.plan(7);
 
   var opts = {
     base: 'office worker'
@@ -20,5 +20,6 @@ test('getNamedLevelsClass test', function basicTest(t) {
     t.equal(classProfile.hitDie, 10, 'Returns a hit die type.');
     t.equal(classProfile.startingHD, 1, 'Returns the number of starting HD.');
     t.ok(Array.isArray(classProfile.levelNames), 'Return array of level names');
+    t.equal(classProfile.gainsHDForever, false, 'Returns whether HD go on forever.');
   }
 });

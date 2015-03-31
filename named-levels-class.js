@@ -43,7 +43,8 @@ function getNamedLevelsClass(opts, done) {
         pluralOfName: changeCase.titleCase(pluralForm),
         levelNames: levelNames,
         hitDie: probable.pickFromArray([2, 3, 4, 6, 8, 10, 12]),
-        startingHD: probable.roll(7) === 0 ? 2 : 1
+        startingHD: probable.roll(7) === 0 ? 2 : 1,
+        gainsHDForever: probable.roll(5) === 0
       };
       done(error, profile);
     }
