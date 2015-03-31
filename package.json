@@ -1,6 +1,6 @@
 {
   "name": "namedlevels-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Serves randomly generated old-school 1st Edition AD&D-style classes that have named levels.",
   "main": "server.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "tape": "^3.0.3"
   },
   "dependencies": {
+    "canonicalizer": "^1.0.1",
     "change-case": "^2.2.0",
     "levelnamer": "^1.3.1",
     "multilevel-cache-tools": "^1.0.0",

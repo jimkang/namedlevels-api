@@ -3,6 +3,7 @@ var createProbable = require('probable').createProbable;
 var seedrandom = require('seedrandom');
 var config = require('./config');
 var changeCase = require('change-case');
+var canonicalizer = require('canonicalizer');
 
 function getNamedLevelsClass(opts, done) {
   var base;
@@ -35,11 +36,14 @@ function getNamedLevelsClass(opts, done) {
       done(error);
     }
     else {
+      var pluralForm = canonicalizer.getSingularAndPluralForms(base)[1];
+
       var profile = {
         className: changeCase.titleCase(base),
+        pluralOfName: changeCase.titleCase(pluralForm),
         levelNames: levelNames,
         hitDie: probable.pickFromArray([2, 3, 4, 6, 8, 10, 12]),
-        startingHD: probable.roll(8) === 0 ? 2 : 1
+        startingHD: probable.roll(7) === 0 ? 2 : 1
       };
       done(error, profile);
     }
