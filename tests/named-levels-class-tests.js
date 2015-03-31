@@ -17,7 +17,7 @@ test('getNamedLevelsClass test', function basicTest(t) {
     }
     t.equal(classProfile.className, 'Office Worker', 'Returns a className.');
     t.equal(classProfile.pluralOfName, 'Office Workers', 'Returns plural.');
-    t.equal(classProfile.hitDie, 10, 'Returns a hit die type.');
+    t.equal(classProfile.hitDie, 4, 'Returns a hit die type.');
     t.equal(classProfile.startingHD, 1, 'Returns the number of starting HD.');
     t.ok(Array.isArray(classProfile.levelNames), 'Return array of level names');
     t.equal(classProfile.gainsHDForever, false, 'Returns whether HD go on forever.');

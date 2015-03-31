@@ -5,6 +5,17 @@ var config = require('./config');
 var changeCase = require('change-case');
 var canonicalizer = require('canonicalizer');
 
+var hdTypeChances = {
+  2: 2,
+  3: 3,
+  4: 8,
+  6: 10,
+  8: 10,
+  10: 9,
+  12: 4,
+  20: 1
+};
+
 function getNamedLevelsClass(opts, done) {
   var base;
 
@@ -21,6 +32,8 @@ function getNamedLevelsClass(opts, done) {
   });
 
   totalLevels = 12 + probable.roll(12);
+
+  var hdTypeTable = probable.createRangeTableFromDict(hdTypeChances);
 
   var names = levelnamer.getNamedLevels(
     {
@@ -42,7 +55,7 @@ function getNamedLevelsClass(opts, done) {
         className: changeCase.titleCase(base),
         pluralOfName: changeCase.titleCase(pluralForm),
         levelNames: levelNames,
-        hitDie: probable.pickFromArray([2, 3, 4, 6, 8, 10, 12]),
+        hitDie: parseInt(hdTypeTable.roll(), 10),
         startingHD: probable.roll(7) === 0 ? 2 : 1,
         gainsHDForever: probable.roll(5) === 0
       };
