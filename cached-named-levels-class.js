@@ -3,7 +3,7 @@ var multilevelCacheTools = require('multilevel-cache-tools');
 
 var memoizedFn = multilevelCacheTools.client.memoize({
   fn: getNamedLevelsClass,
-  port: 4444
+  port: 4848
 });
 
 module.exports = memoizedFn;
