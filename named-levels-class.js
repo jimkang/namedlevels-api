@@ -38,6 +38,9 @@ function getNamedLevelsClass(opts, done) {
     throw new Error('Base not given to getNamedLevelsClass.');
   }
 
+  // Singularize!
+  base = canonicalizer.getSingularAndPluralForms(base)[0];
+
   var probable = createProbable({
     random: seedrandom(base.toLowerCase())
   });
