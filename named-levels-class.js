@@ -39,7 +39,7 @@ function getNamedLevelsClass(opts, done) {
   }
 
   var probable = createProbable({
-    random: seedrandom(base)
+    random: seedrandom(base.toLowerCase())
   });
 
   totalLevels = 12 + probable.roll(12);
