@@ -23,3 +23,21 @@ test('getNamedLevelsClass test', function basicTest(t) {
     t.equal(classProfile.gainsHDForever, false, 'Returns whether HD go on forever.');
   }
 });
+
+test('Preserve periods', function periods(t) {
+  t.plan(2);
+
+  var opts = {
+    base: 'Dr. Wily'
+  };
+
+  getNamedLevelsClass(opts, checkResult);
+
+  function checkResult(error, classProfile) {
+    t.ok(!error, 'Completes without error.');
+    if (error) {
+      console.log('error:', error);
+    }
+    t.equal(classProfile.className, 'Dr. Wily', 'Returns a className.');
+  }
+});

@@ -2,8 +2,8 @@ var levelnamer = require('levelnamer');
 var createProbable = require('probable').createProbable;
 var seedrandom = require('seedrandom');
 var config = require('./config');
-var changeCase = require('change-case');
 var canonicalizer = require('canonicalizer');
+var toTitleCase = require('titlecase');
 
 var hdTypeChances = {
   2: 2,
@@ -69,8 +69,8 @@ function getNamedLevelsClass(opts, done) {
       }
 
       var profile = {
-        className: changeCase.titleCase(base),
-        pluralOfName: changeCase.titleCase(pluralForm),
+        className: toTitleCase(base),
+        pluralOfName: toTitleCase(pluralForm),
         levelNames: levelNames,
         hitDie: hitDie,
         startingHD: startingHD,
