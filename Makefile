@@ -1,5 +1,5 @@
 LEVELCACHEDIR = '../level-cache-server'
-PM2 = '$(LEVELCACHEDIR)/node_modules/.bin/pm2'
+PM2 = pm2
 HOMEDIR = $(shell pwd)
 GITDIR = /var/repos/namedlevels-api.git
 
@@ -10,7 +10,7 @@ start-level-cache:
 test:
 	node tests/named-levels-class-tests.js
 
-start: start-level-cache
+start:
 	$(PM2) start server.js --name namedlevels-api
 
 stop:
