@@ -1,5 +1,6 @@
 var restify = require('restify');
-var getNamedLevelsClass = require('./cached-named-levels-class');
+// var getNamedLevelsClass = require('./cached-named-levels-class');
+var getNamedLevelsClass = require('./named-levels-class');
 
 function respond(req, res, next) {
   if (!req.params.name) {
