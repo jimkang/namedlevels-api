@@ -11,13 +11,11 @@ test:
 	node tests/named-levels-class-tests.js
 
 start:
-	$(PM2) start server.js --name namedlevels-api
+	psy start -n namedlevels-api -l $(HOMEDIR)/logs/namedlevels-api.log -- \
+		node server.js
 
 stop:
-	$(PM2) stop namedlevels-api || echo "Didn't need to stop process."
-
-list:
-	$(PM2) list
+	psy stop namedlevels-api  || echo "Non-zero return code is OK."
 
 sync-worktree-to-git:
 	git --work-tree=$(HOMEDIR) --git-dir=$(GITDIR) checkout -f
@@ -28,3 +26,6 @@ npm-install:
 	npm prune
 
 post-receive: sync-worktree-to-git npm-install stop start
+
+pushall:
+	git push origin master && git push server master
