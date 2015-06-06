@@ -1,11 +1,10 @@
-LEVELCACHEDIR = '../level-cache-server'
 PM2 = pm2
 HOMEDIR = $(shell pwd)
 GITDIR = /var/repos/namedlevels-api.git
 
 start-level-cache:
-	$(PM2) start $(LEVELCACHEDIR)/start-cache-server.js --name level-cache || \
-	echo "level-cache has already been started."
+	psy start -n level-cache -l $(HOMEDIR)/logs/cache.log -- \
+	 node start-cache-server.js
 
 test:
 	node tests/named-levels-class-tests.js
