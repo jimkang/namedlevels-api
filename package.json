@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "canonicalizer": "^1.0.1",
-    "levelnamer": "^1.4.1",
+    "levelnamer": "^1.4.2",
     "multilevel-cache-tools": "^1.0.1",
     "probable": "^1.4.0",
     "restify": "^3.0.1",
