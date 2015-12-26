@@ -1,7 +1,7 @@
 var levelnamer = require('levelnamer');
 var createProbable = require('probable').createProbable;
 var seedrandom = require('seedrandom');
-var config = require('./config');
+var config = require('./config/config');
 var canonicalizer = require('canonicalizer');
 var toTitleCase = require('titlecase');
 
