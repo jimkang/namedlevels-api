@@ -1,15 +1,47 @@
 var getNamedLevelsClass = require('./named-levels-class');
-var multilevelCacheTools = require('multilevel-cache-tools');
+var level = require('level');
+var callNextTick = require('call-next-tick');
 
-var memoizedFn = multilevelCacheTools.client.memoize({
-  fn: getNamedLevelsClass,
-  port: 4848,
-  onConnectError: respondToCacheDisconnect
-});
+var db = level(
+  __dirname + '/data/named-levels-classes.db',
+  {
+    keyEncoding: 'json',
+    valueEncoding: 'json'
+  }
+);
 
-function respondToCacheDisconnect() {
-  console.log('Cache disconnected! namedlevels-api exiting.');
-  process.exit();
+function cachedGetNamedLevelsClass(opts, done) {
+  db.get(opts, checkGet);
+
+  function checkGet(error, profile) {
+    if (error && error.type === 'NotFoundError') {
+      getNamedLevelsClass(opts, saveResult);
+    }
+    else if (error) {
+      done(error);
+    }
+    else {
+      done(error, profile);
+    }
+  }
+
+  function saveResult(error, profile) {
+    if (error) {
+      done(error);
+    }
+    else {
+      db.put(opts, profile, passProfile);
+    }
+
+    function passProfile(error) {
+      if (error) {
+        done(error);
+      }
+      else {
+        done(error, profile);
+      }
+    }
+  }
 }
 
-module.exports = memoizedFn;
+module.exports = cachedGetNamedLevelsClass;
