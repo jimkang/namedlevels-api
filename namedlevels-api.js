@@ -1,18 +1,31 @@
 var restify = require('restify');
 var getNamedLevelsClass = require('./cached-named-levels-class');
-// var getNamedLevelsClass = require('./named-levels-class');
+var getRandomClassName = require('./get-random-class-name');
 
 function respond(req, res, next) {
-  if (!req.params.name) {
-    next(new restify.BadRequestError('Missing name parameter.'));
-    return;
+  if (req.params.name) {
+    respondWithClassForName(null, req.params.name);
+  }
+  else {
+    getRandomClassName(respondWithClassForName);
   }
 
-  var opts = {
-    base: req.params.name
-  };
+  function respondWithClassForName(error, name) {
+    if (error || !name) {
+      var message = 'Could not get name parameter.';
+      if (error) {
+        message = error.message;
+      }
+      next(new restify.InternalServerError(message));
+      return;
+    }
 
-  getNamedLevelsClass(opts, renderResult);
+    var opts = {
+      base: name
+    };
+
+    getNamedLevelsClass(opts, renderResult);
+  }
 
   function renderResult(error, classProfile) {
     if (error) {
