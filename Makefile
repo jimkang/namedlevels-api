@@ -36,5 +36,5 @@ test:
 	node tests/named-levels-class-tests.js
 	node tests/cache-tests.js
 
-pushall:
-	git push origin master && git push server master
+pushall: push-docker-image
+	git push origin master
