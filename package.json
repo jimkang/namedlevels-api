@@ -24,7 +24,7 @@
     "call-next-tick": "^1.1.2",
     "canonicalizer": "^1.0.1",
     "level": "^1.4.0",
-    "levelnamer": "^1.4.3",
+    "levelnamer": "^1.4.4",
     "probable": "^1.4.0",
     "restify": "^4.0.3",
     "seedrandom": "^2.3.11",
