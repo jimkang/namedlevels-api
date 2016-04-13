@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var restify = require('restify');
 var getNamedLevelsClass = require('./cached-named-levels-class');
 var getRandomClassName = require('./get-random-class-name');

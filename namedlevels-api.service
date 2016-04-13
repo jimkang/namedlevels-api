@@ -1,0 +1,13 @@
+[Unit]
+Description=warehouse
+After=network.target
+[Service]
+ExecStart=/var/apps/namedlevels-api/namedlevels-api.js
+Restart=always
+User=app
+Group=app
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/var/apps/namedlevels-api
+[Install]
+WantedBy=multi-user.target
