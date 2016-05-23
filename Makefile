@@ -1,29 +1,33 @@
 HOMEDIR = $(shell pwd)
-SSHCMD = ssh $(SMUSER)@smidgeo-headporters
+SMUSER = noderunner
+PRIVUSER = root
+SERVER = sprigot-droplet
+SSHCMD = ssh $(SMUSER)@$(SERVER)
+PRIVSSHCMD = ssh $(PRIVUSER)@$(SERVER)
 PROJECTNAME = namedlevels-api
-APPDIR = /var/apps/$(PROJECTNAME)
+APPDIR = /var/www/$(PROJECTNAME)
 
 pushall: update-remote
 	git push origin master
 
 sync:
-	rsync -a $(HOMEDIR) $(SMUSER)@smidgeo-headporters:/var/apps/ --exclude node_modules/ --exclude data/
-	ssh $(SMUSER)@smidgeo-headporters "cd /var/apps/$(PROJECTNAME) && npm install"
+	rsync -a $(HOMEDIR) $(SMUSER)@$(SERVER):/var/www/ --exclude node_modules/ --exclude data/
+	$(SSHCMD) "cd /var/www/$(PROJECTNAME) && npm install"
 
 restart-remote:
-	$(SSHCMD) "systemctl restart $(PROJECTNAME)"
+	$(PRIVSSHCMD) "service $(PROJECTNAME) restart"
 
 set-permissions:
-	$(SSHCMD) "chmod +x $(APPDIR)/$(PROJECTNAME).js && \
+	$(PRIVSSHCMD) "chmod +x $(APPDIR)/$(PROJECTNAME).js && \
 	chmod 777 -R $(APPDIR)/data/"
 
 update-remote: sync set-permissions restart-remote
 
 install-service:
-	$(SSHCMD) "cp $(APPDIR)/$(PROJECTNAME).service /etc/systemd/system && \
+	$(PRIVSSHCMD) "cp $(APPDIR)/$(PROJECTNAME).service /etc/systemd/system && \
 	systemctl daemon-reload"
 
 set-up-directories:
-	$(SSHCMD) "mkdir -p $(APPDIR)/data"
+	$(PRIVSSHCMD) "mkdir -p $(APPDIR)/data"
 
 initial-setup: set-up-directories sync set-permissions install-service
