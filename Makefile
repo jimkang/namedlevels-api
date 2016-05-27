@@ -1,18 +1,18 @@
 HOMEDIR = $(shell pwd)
-SMUSER = noderunner
+SMUSER = bot
 PRIVUSER = root
-SERVER = sprigot-droplet
+SERVER = smidgeo
 SSHCMD = ssh $(SMUSER)@$(SERVER)
 PRIVSSHCMD = ssh $(PRIVUSER)@$(SERVER)
 PROJECTNAME = namedlevels-api
-APPDIR = /var/www/$(PROJECTNAME)
+APPDIR = /opt/$(PROJECTNAME)
 
 pushall: update-remote
 	git push origin master
 
 sync:
-	rsync -a $(HOMEDIR) $(SMUSER)@$(SERVER):/var/www/ --exclude node_modules/ --exclude data/
-	$(SSHCMD) "cd /var/www/$(PROJECTNAME) && npm install"
+	rsync -a $(HOMEDIR) $(SMUSER)@$(SERVER):/opt/ --exclude node_modules/ --exclude data/
+	$(SSHCMD) "cd /opt/$(PROJECTNAME) && npm install"
 
 restart-remote:
 	$(PRIVSSHCMD) "service $(PROJECTNAME) restart"
@@ -31,3 +31,6 @@ set-up-directories:
 	$(PRIVSSHCMD) "mkdir -p $(APPDIR)/data"
 
 initial-setup: set-up-directories sync set-permissions install-service
+
+check-status:
+	$(SSHCMD) "systemctl status $(PROJECTNAME)"
