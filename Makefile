@@ -34,3 +34,6 @@ initial-setup: set-up-directories sync set-permissions install-service
 
 check-status:
 	$(SSHCMD) "systemctl status $(PROJECTNAME)"
+
+test:
+	node tests/named-levels-class-tests.js
