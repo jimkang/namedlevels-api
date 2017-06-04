@@ -17,6 +17,9 @@ sync:
 restart-remote:
 	$(PRIVSSHCMD) "service $(PROJECTNAME) restart"
 
+stop:
+	$(PRIVSSHCMD) "service $(PROJECTNAME) stop"
+
 set-permissions:
 	$(PRIVSSHCMD) "chmod +x $(APPDIR)/$(PROJECTNAME).js && \
 	chmod 777 -R $(APPDIR)/data/"
