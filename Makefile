@@ -38,5 +38,8 @@ initial-setup: set-up-directories sync set-permissions install-service
 check-status:
 	$(SSHCMD) "systemctl status $(PROJECTNAME)"
 
+check-log:
+	$(SSHCMD) "journalctl -r -u $(PROJECTNAME)"
+
 test:
 	node tests/named-levels-class-tests.js
