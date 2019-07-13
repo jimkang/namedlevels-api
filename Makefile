@@ -43,3 +43,7 @@ check-log:
 
 test:
 	node tests/named-levels-class-tests.js
+
+prettier:
+	prettier --single-quote --write "**/*.js"
+

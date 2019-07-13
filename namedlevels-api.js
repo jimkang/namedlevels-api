@@ -7,8 +7,7 @@ var getRandomClassName = require('./get-random-class-name');
 function respond(req, res, next) {
   if (req.params.name) {
     respondWithClassForName(null, req.params.name);
-  }
-  else {
+  } else {
     getRandomClassName(respondWithClassForName);
   }
 
@@ -32,8 +31,7 @@ function respond(req, res, next) {
   function renderResult(error, classProfile) {
     if (error) {
       next(error);
-    }
-    else {
+    } else {
       res.json(classProfile);
       next();
     }
@@ -41,12 +39,9 @@ function respond(req, res, next) {
 }
 
 function respondHead(req, res, next) {
-  res.writeHead(
-    200, 
-    {
-      'content-type': 'application/json'
-    }
-  );
+  res.writeHead(200, {
+    'content-type': 'application/json'
+  });
   res.end();
   next();
 }

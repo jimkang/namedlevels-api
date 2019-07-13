@@ -61,8 +61,7 @@ function getNamedLevelsClass(opts, done) {
   function buildProfileWithLevels(error, levelNames) {
     if (error) {
       done(error);
-    }
-    else {
+    } else {
       var pluralForm = canonicalizer.getSingularAndPluralForms(base)[1];
       var hitDie = parseInt(hdTypeTable.roll(), 10);
       var startingHD = 1;
@@ -83,6 +82,5 @@ function getNamedLevelsClass(opts, done) {
     }
   }
 }
-
 
 module.exports = getNamedLevelsClass;

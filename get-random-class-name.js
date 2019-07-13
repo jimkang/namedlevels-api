@@ -18,8 +18,7 @@ function getRandomClassName(done) {
   function passFirstElement(error, words) {
     if (error || words.length < 1) {
       done(error);
-    }
-    else {
+    } else {
       done(error, words[0]);
     }
   }
