@@ -6,6 +6,7 @@ var wordnok = createWordnok({
 });
 
 function getRandomClassName(done) {
+  debugger
   wordnok.getRandomWords(
     {
       customParams: {
@@ -17,6 +18,7 @@ function getRandomClassName(done) {
   );
 
   function passFirstElement(error, words) {
+    debugger
     if (error || words.length < 1) {
       done(error);
     }

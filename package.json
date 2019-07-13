@@ -23,12 +23,12 @@
   "dependencies": {
     "call-next-tick": "^1.1.2",
     "canonicalizer": "^1.0.1",
-    "level": "^1.7.0",
     "levelnamer": "^1.4.6",
+    "lodash": "^4.17.14",
     "probable": "^1.4.0",
     "restify": "^4.3.4",
     "seedrandom": "^2.3.11",
     "titlecase": "^1.0.2",
-    "wordnok": "^3.3.5"
+    "wordnok": "^3.3.8"
   }
 }

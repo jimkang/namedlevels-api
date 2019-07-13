@@ -45,11 +45,11 @@ function getNamedLevelsClass(opts, done) {
     random: seedrandom(base.toLowerCase())
   });
 
-  totalLevels = 12 + probable.roll(12);
+  var totalLevels = 12 + probable.roll(12);
 
   var hdTypeTable = probable.createRangeTableFromDict(hdTypeChances);
 
-  var names = levelnamer.getNamedLevels(
+  levelnamer.getNamedLevels(
     {
       word: base,
       totalLevels: totalLevels,
