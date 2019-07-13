@@ -6,11 +6,9 @@ var wordnok = createWordnok({
 });
 
 function getRandomClassName(done) {
-  debugger
   wordnok.getRandomWords(
     {
       customParams: {
-        includePartOfSpeech: '',
         limit: 1
       }
     },
@@ -18,7 +16,6 @@ function getRandomClassName(done) {
   );
 
   function passFirstElement(error, words) {
-    debugger
     if (error || words.length < 1) {
       done(error);
     }
