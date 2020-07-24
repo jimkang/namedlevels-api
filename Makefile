@@ -1,7 +1,7 @@
 HOMEDIR = $(shell pwd)
 SMUSER = bot
 PRIVUSER = root
-SERVER = smidgeo
+SERVER = smallcatlabs
 SSHCMD = ssh $(SMUSER)@$(SERVER)
 PRIVSSHCMD = ssh $(PRIVUSER)@$(SERVER)
 PROJECTNAME = namedlevels-api
@@ -46,4 +46,3 @@ test:
 
 prettier:
 	prettier --single-quote --write "**/*.js"
-
